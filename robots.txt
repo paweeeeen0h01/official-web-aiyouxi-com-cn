@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://paweeeeen0h01.github.io/official-web-aiyouxi-com-cn/sitemap.xml

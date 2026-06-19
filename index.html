@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 日常查询与对照阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f3f4f6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #2d3436;
+            line-height: 1.7;
+            padding: 2rem 1.2rem;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* ---------- 卡片 ---------- */
+        .card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.04);
+            padding: 2rem 1.8rem;
+            margin-bottom: 2rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            border-left: 4px solid #94a3b8;
+            padding-left: 1rem;
+        }
+
+        .card p {
+            margin-bottom: 0.9rem;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ---------- hero ---------- */
+        .hero {
+            text-align: center;
+            padding: 2.8rem 1.5rem 2.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 450;
+            color: #1e293b;
+            background: linear-gradient(135deg, #1e293b 0%, #3b4c5c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            color: #64748b;
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ---------- 亮点网格 ---------- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.2rem;
+            margin: 1.2rem 0 0.2rem;
+        }
+
+        .highlight-item {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 1.2rem 1rem;
+            border: 1px solid #eaecf0;
+            transition: background 0.2s;
+        }
+
+        .highlight-item:hover {
+            background: #f1f3f5;
+        }
+
+        .highlight-item .num {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #94a3b8;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .highlight-item h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #1e293b;
+            margin-bottom: 0.3rem;
+        }
+
+        .highlight-item p {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* ---------- 内联链接 ---------- */
+        .inline-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 450;
+            border-bottom: 1px dotted #94a3b8;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .inline-link:hover {
+            color: #1d4ed8;
+            border-bottom: 1px solid #1d4ed8;
+        }
+
+        /* ---------- 场景列表 ---------- */
+        .scene-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .scene-list li {
+            padding: 0.7rem 0 0.7rem 1.8rem;
+            position: relative;
+            border-bottom: 1px solid #f0f2f5;
+        }
+
+        .scene-list li:last-child {
+            border-bottom: none;
+        }
+
+        .scene-list li::before {
+            content: "·";
+            position: absolute;
+            left: 0.3rem;
+            color: #94a3b8;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .scene-list strong {
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        /* ---------- 提示区块 ---------- */
+        .tip-box {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 1.5rem 1.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .tip-box p {
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .tip-box .label {
+            font-weight: 500;
+            color: #475569;
+        }
+
+        /* ---------- FAQ摘要 ---------- */
+        .faq-item {
+            margin: 1rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .faq-item .q {
+            font-weight: 500;
+            color: #1e293b;
+            display: block;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-item .a {
+            color: #4b5563;
+            padding-left: 0.2rem;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- 响应式 ---------- */
+        @media (max-width: 640px) {
+            body {
+                padding: 1.5rem 0.8rem;
+            }
+
+            .card {
+                padding: 1.5rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .hero {
+                padding: 2rem 0.5rem;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 800px) {
+            .grid-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ---------- 装饰 ---------- */
+        .small-note {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-top: 1rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e5ea;
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero -->
+    <div class="card hero">
+        <h1>爱游戏 · 产品摘要</h1>
+        <div class="sub">
+            一款面向日常查询与信息对照的工具型网站，适合在浏览、阅读、延伸思考时顺手使用。
+        </div>
+    </div>
+
+    <!-- 摘要 card -->
+    <div class="card">
+        <h2>摘要 · 定位与用途</h2>
+        <p>
+            <a href="https://official-web-aiyouxi.com.cn" class="inline-link">爱游戏</a> 
+            是一个以信息归集与快速检索为核心的轻量站点。它的设计并不追求大而全的数据库，而是围绕“查询‑对照‑延伸”这一条主线，把分散的资料整理成可翻阅、可比较的条目。日常中，当你想确认某个细节，或者想从一个话题跳转到相关背景时，这个站点能提供一种相对安静的入口。
+        </p>
+        <p>
+            整个界面偏向克制，没有过多干扰元素。无论你是想快速定位某条记录，还是打算花几分钟横向对比几组信息，使用起来都不太会有认知负担。它更适合被当作一个随手打开的参考页，而不是一个需要频繁刷新、追逐更新的动态平台。
+        </p>
+    </div>
+
+    <!-- 亮点 + 网格 -->
+    <div class="card">
+        <h2>几个值得留意的特点</h2>
+        <div class="grid-3">
+            <div class="highlight-item">
+                <div class="num">01</div>
+                <h3>轻量检索</h3>
+                <p>不需要复杂筛选，输入关键词即可返回相关条目，响应速度比较快，适合碎片化查询。</p>
+            </div>
+            <div class="highlight-item">
+                <div class="num">02</div>
+                <h3>对照布局</h3>
+                <p>部分页面采用左右或上下对照结构，方便并排比较不同数据或描述，减少来回跳转。</p>
+            </div>
+            <div class="highlight-item">
+                <div class="num">03</div>
+                <h3>延伸路径</h3>
+                <p>每个条目底部或侧边会列出若干关联内容，引导你顺着兴趣继续阅读，而非一次性抛出海量链接。</p>
+            </div>
+        </div>
+        <p class="small-note" style="margin-top:1.2rem;">
+            当然，这些特点都建立在有限但精选的内容基础上。网站并没有覆盖所有领域，但在它所关注的范围内，信息质量保持得比较稳定。
+        </p>
+    </div>
+
+    <!-- 使用场景 -->
+    <div class="card">
+        <h2>使用建议 · 几个常见场景</h2>
+        <ul class="scene-list">
+            <li>
+                <strong>日常查证</strong> —— 比如你读到一篇文章，里面提到某个作品或术语，想快速了解背景；打开 <a href="https://official-web-aiyouxi.com.cn" class="inline-link">爱游戏</a> 输入关键词，通常一两步就能找到概要。
+            </li>
+            <li>
+                <strong>横向对比</strong> —— 需要比较几个同类项（例如版本、规格、时间线）时，站内对照视图比开多个标签页更省力，尤其适合屏幕空间有限的情况。
+            </li>
+            <li>
+                <strong>延伸浏览</strong> —— 原本只想查一个点，结果被关联条目带到另一个相关话题，这种“顺路”的阅读体验在站内比较自然。不妨留出十分钟，跟着链接慢慢看。
+            </li>
+            <li>
+                <strong>离线前备查</strong> —— 虽然网站本身需要网络连接，但你可以把感兴趣的条目内容复制或摘录下来，作为个人笔记的素材。站内没有复杂脚本，复制文本很方便。
+            </li>
+        </ul>
+    </div>
+
+    <!-- 提示 + 可信说明 -->
+    <div class="card">
+        <h2>一些朴素的提示</h2>
+        <div class="tip-box">
+            <p><span class="label">关于内容范围</span> —— 爱游戏主要收录经过整理的信息，但不保证覆盖所有最新动态。如果你需要特别前沿或小众的资料，建议同时参考其他一手来源。</p>
+            <p><span class="label">关于访问方式</span> —— 直接通过浏览器打开 <a href="https://official-web-aiyouxi.com.cn" class="inline-link">爱游戏</a> 即可，无需注册或登录。站内没有强制弹窗、推广横幅或诱导点击的按钮，你可以安静地浏览。</p>
+            <p><span class="label">关于引用</span> —— 站内内容可供个人参考或学习，若需公开发布或大量引用，建议与原条目进行交叉验证，确保准确。</p>
+        </div>
+        <p style="margin-top:1rem; color:#475569;">
+            总的来说，这个站点更接近一个安静的参考角落，而不是一个喧哗的入口。它不会承诺“最全”“最快”，但如果你习惯在阅读时随手查证、对照、延伸，它或许能成为你工具列表里一个不起眼却踏实的存在。
+        </p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="card">
+        <h2>FAQ 摘要 · 几个常见疑问</h2>
+        <div class="faq-item">
+            <span class="q">问：网站是否需要付费或注册？</span>
+            <div class="a">不需要。所有内容均可直接浏览，没有会员墙或隐藏收费区。</div>
+        </div>
+        <div class="faq-item">
+            <span class="q">问：查询结果很少怎么办？</span>
+            <div class="a">可以尝试更换同义词或更短的关键词。另外，站内数据本身是经过筛选的，某些冷门条目可能未被收录。</div>
+        </div>
+        <div class="faq-item">
+            <span class="q">问：手机端体验如何？</span>
+            <div class="a">页面做了基本响应式适配，在手机浏览器上可以正常阅读和点击，交互以纵向滚动为主。</div>
+        </div>
+        <hr>
+        <p style="font-size:0.95rem; color:#4b5563;">
+            如果你还有其他疑问，不妨直接进入 <a href="https://official-web-aiyouxi.com.cn" class="inline-link">爱游戏</a> 在站内查找，多数条目页脚都附有简短的说明或上下文提示。
+        </p>
+    </div>
+
+    <!-- 脚注 -->
+    <div style="text-align:center; padding:1.2rem 0 0.5rem; color:#94a3b8; font-size:0.8rem; letter-spacing:0.02em;">
+        <span>内容仅供参考 · 日常查询与对照阅读</span>
+    </div>
+</div>
+</body>
+</html>
