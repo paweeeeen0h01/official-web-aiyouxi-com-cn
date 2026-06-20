@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>熊猫体育 · 稳定聚合入口指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f5f7fb;
+            color: #1a1f2e;
+            line-height: 1.6;
+        }
+
+        /* ===== 深色 Hero 头图 — 杂志专题风格 ===== */
+        .hero {
+            background: linear-gradient(135deg, #0b0d17 0%, #1a1f30 60%, #232946 100%);
+            color: #eef0f6;
+            padding: 4rem 2rem 3.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid #f5c842;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: -20px;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(245, 200, 66, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .sub {
+            font-size: 1.15rem;
+            color: #b8c4de;
+            max-width: 680px;
+            margin: 0.5rem auto 0;
+            border-top: 1px solid rgba(245, 200, 66, 0.3);
+            padding-top: 1rem;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+
+        /* ===== 浅色正文区 - 卡片化三段 ===== */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+
+        .section-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border-left: 5px solid #f5c842;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+            color: #0b1a2f;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card h2 span {
+            background: #f5c842;
+            color: #0b0d17;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.15rem 0.7rem;
+            border-radius: 30px;
+            margin-left: 8px;
+        }
+
+        .card p {
+            margin-bottom: 0.9rem;
+            font-size: 1rem;
+            color: #2d3349;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .accent-link {
+            color: #c9972b;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(201, 151, 43, 0.3);
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .accent-link:hover {
+            color: #a57b1f;
+            border-bottom-color: #a57b1f;
+        }
+
+        .highlight-box {
+            background: #f5f2e9;
+            padding: 1.2rem 1.6rem;
+            border-radius: 14px;
+            margin: 1.2rem 0 0.2rem;
+            border-left: 3px solid #f5c842;
+        }
+
+        .highlight-box strong {
+            color: #1f2937;
+        }
+
+        /* ===== FAQ 摘要 ===== */
+        .faq-mini {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+            background: #f0f2f9;
+            padding: 1.4rem 1.8rem;
+            border-radius: 18px;
+        }
+
+        .faq-item {
+            flex: 1 1 200px;
+        }
+
+        .faq-item .q {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #0b1a2f;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .faq-item .a {
+            font-size: 0.9rem;
+            color: #3e465e;
+        }
+
+        /* ===== 页脚 ===== */
+        .site-footer {
+            background: #0b0d17;
+            color: #b0b7ce;
+            text-align: center;
+            padding: 2.5rem 1.5rem 2rem;
+            border-top: 1px solid #2a3045;
+        }
+
+        .site-footer p {
+            font-size: 0.95rem;
+            max-width: 650px;
+            margin: 0 auto;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-accent {
+            color: #f5c842;
+            font-weight: 500;
+        }
+
+        .footer-sub {
+            margin-top: 0.9rem;
+            font-size: 0.85rem;
+            color: #6f7897;
+        }
+
+        /* ===== 响应式细节 ===== */
+        @media (max-width: 700px) {
+            .hero {
+                padding: 3rem 1.2rem 2.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .faq-mini {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 2rem 1rem 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .hero .sub {
+                font-size: 0.95rem;
+            }
+
+            .card h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 杂志式深色横幅 -->
+    <header class="hero">
+        <h1>熊猫体育 · 专题</h1>
+        <div class="sub">稳定接入 | 清晰结构 | 信息聚合</div>
+    </header>
+
+    <!-- 主体内容：三段自然介绍 + FAQ 摘要 -->
+    <main class="container">
+        <div class="section-grid">
+
+            <!-- 卡片 1：背景说明 + 稳定入口 -->
+            <article class="card">
+                <h2>▎背景与定位 <span>入口</span></h2>
+                <p>
+                    在体育资讯与服务持续数字化的背景下，<a href="https://h5-pandasports.com" class="accent-link">熊猫体育</a>
+                    作为一个轻量级聚合页面，专注于整合体育内容的基础访问路径。其设计不依赖复杂应用，而是通过
+                    标准 web 界面提供稳定的信息中转。无论是赛程提要、数据概览还是内容索引，均保持简洁的调用逻辑。
+                </p>
+                <p>
+                    与许多需要频繁更新客户端的服务不同，该入口采用 H5 响应式结构，大幅降低了访问门槛。
+                    用户只需标准浏览器即可获取一致的浏览体验，无需额外配置。这一特性尤其适合跨设备
+                    或多场景下的快速查阅。
+                </p>
+                <div class="highlight-box">
+                    <strong>▸ 接入要点：</strong> 域名直达，无中间跳转；页面轻量化，核心信息优先加载。
+                </div>
+            </article>
+
+            <!-- 卡片 2：场景与使用说明 -->
+            <article class="card">
+                <h2>▎适用场景与操作指引</h2>
+                <p>
+                    针对日常体育信息获取，<a href="https://h5-pandasports.com" class="accent-link">熊猫体育</a>
+                    主要覆盖三类使用情境：赛前预览、进行中的摘要浏览以及赛后数据回顾。
+                    页面结构遵循信息层级——顶部导航聚合主要分类，中部卡片陈列关键内容，底部保留
+                    辅助链接与说明。用户可在数秒内定位到目标板块。
+                </p>
+                <p>
+                    在稳定性方面，服务端采用缓存与按需加载策略，避免大量资源同时请求。
+                    对于移动端网络波动场景，页面依然能保持基础内容的可读性。建议将页面添加至
+                    浏览器书签或主屏幕，以获得更快捷的再次访问。
+                </p>
+            </article>
+
+            <!-- 卡片 3：特点与 FAQ 摘要（自然融合） -->
+            <article class="card">
+                <h2>▎结构特点与常见疑问</h2>
+                <p>
+                    从信息密度角度，<a href="https://h5-pandasports.com" class="accent-link">熊猫体育</a>
+                    不堆砌无关元素，每个模块均服务于“快速了解体育动态”这一核心。
+                    页面使用卡片式分隔，配合低饱和底色，降低长时间浏览的视觉疲劳。
+                    同时，所有可点击区域均有明确状态反馈，提升操作确定感。
+                </p>
+
+                <!-- FAQ 摘要嵌入（内联在第三段） -->
+                <div class="faq-mini">
+                    <div class="faq-item">
+                        <span class="q">—— 是否需要注册？</span>
+                        <span class="a">当前页面以信息展示为主，不强制用户注册即可浏览主要内容。</span>
+                    </div>
+                    <div class="faq-item">
+                        <span class="q">—— 数据更新频率？</span>
+                        <span class="a">基础信息随赛事周期同步，关键赛果通常在结束后数分钟内刷新。</span>
+                    </div>
+                    <div class="faq-item">
+                        <span class="q">—— 链接稳定性？</span>
+                        <span class="a">域名长期维护，使用标准 https 协议，建议保持浏览器为最新版本。</span>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1rem; font-size: 0.95rem; color: #3e4a61;">
+                    ※ 页面不存储个人敏感信息，所有交互均基于公开内容索引。
+                </p>
+            </article>
+        </div>
+
+        <!-- 额外提示行（页尾访问前导） -->
+        <div style="margin-top: 2.8rem; text-align: center; background: #eef1f8; padding: 1.5rem 1rem; border-radius: 40px;">
+            <p style="font-size: 1.05rem; font-weight: 500; color: #1f2a44;">
+                若需访问体育信息聚合页面，可直接通过以下链接抵达：
+                <a href="https://h5-pandasports.com" class="accent-link" style="font-size: 1.15rem;">熊猫体育</a>
+                <span style="display: block; font-size: 0.85rem; color: #5d6a87; margin-top: 6px;">统一入口 · 标准界面</span>
+            </p>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+        <p>
+            <span class="footer-accent">熊猫体育</span> · 页面基于信息聚合与稳定访问设计，
+            不涉及任何竞技预测或资金交易。内容仅供一般性参考。
+        </p>
+        <p class="footer-sub">
+            建议使用现代浏览器以获得最佳显示效果。无广告弹窗，无跟踪脚本。
+        </p>
+    </footer>
+
+</body>
+</html>
