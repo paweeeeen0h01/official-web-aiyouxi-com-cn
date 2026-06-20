@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>满冠体育 · 运动从这里开始</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #f5fcfa 0%, #e6f3ef 100%);
+      color: #1c2e2a;
+      line-height: 1.6;
+      padding: 2rem 1.2rem 3rem;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    /* hero 开场短句 */
+    .hero {
+      text-align: center;
+      padding: 2.8rem 1rem 2rem;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      background: #0f766e;
+      color: #f0fdfa;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #0b4f4a, #1c7a6e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .sub {
+      font-size: 1.2rem;
+      color: #2f4f49;
+      max-width: 550px;
+      margin: 0.6rem auto 0;
+      opacity: 0.85;
+    }
+
+    /* 承接段落 —— 帮用户快速识别 */
+    .intro-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(6px);
+      border-radius: 28px;
+      padding: 2.2rem 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 8px 28px rgba(17, 94, 84, 0.06);
+      border: 1px solid rgba(15, 118, 110, 0.08);
+    }
+
+    .intro-card p {
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .intro-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .intro-card strong {
+      color: #0b5f56;
+      font-weight: 600;
+    }
+
+    .intro-card .inline-link {
+      color: #0b6b5f;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid rgba(13, 115, 102, 0.25);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .intro-card .inline-link:hover {
+      border-bottom-color: #0f766e;
+      color: #07443d;
+    }
+
+    /* 特点列表 —— 网格卡片 */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.6rem;
+      margin: 2.6rem 0 1.8rem;
+    }
+
+    .feature-card {
+      background: #ffffffd9;
+      backdrop-filter: blur(4px);
+      border-radius: 24px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 6px 14px rgba(15, 94, 84, 0.03);
+      border: 1px solid rgba(13, 115, 102, 0.12);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 24px rgba(15, 94, 84, 0.08);
+      border-color: #0f766e55;
+    }
+
+    .feature-icon {
+      display: inline-block;
+      background: #d5f0ea;
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 0.7rem;
+      color: #0b5f56;
+    }
+
+    .feature-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #14423c;
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-card p {
+      font-size: 0.93rem;
+      color: #2f4f49;
+      line-height: 1.5;
+    }
+
+    /* 温和结尾 */
+    .gentle-closing {
+      background: #e3f1ed;
+      border-radius: 28px;
+      padding: 2.2rem 2rem;
+      margin: 2.6rem 0 2rem;
+      text-align: center;
+      border: 1px solid rgba(15, 118, 110, 0.18);
+    }
+
+    .gentle-closing h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #0b4f4a;
+      margin-bottom: 0.6rem;
+    }
+
+    .gentle-closing p {
+      max-width: 580px;
+      margin: 0.3rem auto 0;
+      font-size: 1rem;
+      color: #1e423c;
+    }
+
+    .gentle-closing .closing-link {
+      color: #0b6b5f;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid rgba(13, 115, 102, 0.2);
+    }
+
+    .gentle-closing .closing-link:hover {
+      border-bottom-color: #0f766e;
+      color: #043e36;
+    }
+
+    /* 小提示 / FAQ 摘要 */
+    .faq-mini {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 2.2rem 0;
+    }
+
+    .faq-item {
+      flex: 1 1 220px;
+      background: #ffffffb3;
+      backdrop-filter: blur(4px);
+      border-radius: 18px;
+      padding: 1.2rem 1.3rem;
+      border-left: 5px solid #1b9686;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .faq-item summary {
+      font-weight: 500;
+      color: #0b4f4a;
+      cursor: default;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+      color: #2b4d45;
+      margin-top: 0.2rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid rgba(15, 118, 110, 0.15);
+      margin: 1.8rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.85rem;
+      color: #3e6259;
+      text-align: center;
+      opacity: 0.7;
+      padding-top: 1rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      body {
+        padding: 1.2rem 0.8rem 2.5rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .intro-card {
+        padding: 1.6rem 1.2rem;
+      }
+      .features {
+        gap: 1rem;
+      }
+      .feature-card {
+        padding: 1.2rem 1rem;
+      }
+      .gentle-closing {
+        padding: 1.6rem 1.2rem;
+      }
+      .faq-item {
+        flex: 1 1 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .hero .sub {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- 开场短句 -->
+    <div class="hero">
+      <span class="badge">运动 · 纯粹 · 联结</span>
+      <h1>满冠体育</h1>
+      <p class="sub">一个你愿意留步看看的体育角落</p>
+    </div>
+
+    <!-- 承接段落：从用户视角快速识别网站用途 -->
+    <div class="intro-card">
+      <p>
+        初次遇见一个体育网站，你大概会先问：<strong>这里有什么？适合谁？</strong> 
+        其实答案都在「<a href="https://m-sport-mg.com" class="inline-link">满冠体育</a>」这四个字里 —— 它不像一个门户，更像一个安静的体育客厅。
+      </p>
+      <p>
+        没有杂乱的弹窗，也没有浮夸的口号。页面里是沉静的蓝绿色调，卡片排列得刚好。你可以慢慢翻看运动项目、赛事思路，或者只是感受一份属于体育的氛围。它想做的，不过是让喜欢运动的人，能方便地找到自己关心的东西。
+      </p>
+      <p>
+        如果你也在找一个不吵闹、有质感的体育信息落脚点，那这里应该挺合适。
+      </p>
+    </div>
+
+    <!-- 特点列表 (网格卡片) -->
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🏃</div>
+        <h3>项目清晰</h3>
+        <p>覆盖多种运动类型，从团队对抗到个人训练，分类简单直观。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧭</div>
+        <h3>节奏舒适</h3>
+        <p>版面留白充足，不堆信息。每部分都像一次短对话，不赶时间。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>移动友好</h3>
+        <p>无论在手机还是平板上，卡片和文字都自动适配，阅读不费力。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌱</div>
+        <h3>持续生长</h3>
+        <p>内容会逐渐丰富，保持轻盈但不单薄。每次来都可能遇到新角落。</p>
+      </div>
+    </div>
+
+    <!-- 小场景 / 提示 (替代场景段落) -->
+    <div style="margin: 1.2rem 0 1.8rem; padding: 0.2rem 0;">
+      <p style="color: #1c453e; font-size: 0.98rem; background: #eaf7f2; padding: 0.8rem 1.4rem; border-radius: 40px; display: inline-block;">
+        ⚡ 午后翻一翻，或者赛前找点灵感 —— 满冠体育都兜得住。
+      </p>
+    </div>
+
+    <!-- FAQ 摘要 (两个小卡片) -->
+    <div class="faq-mini">
+      <div class="faq-item">
+        <summary>❓ 网站主要侧重什么？</summary>
+        <p>提供体育项目介绍、基础规则、训练思路以及赛事背景，适合爱好者快速查阅。</p>
+      </div>
+      <div class="faq-item">
+        <summary>❓ 内容更新频率如何？</summary>
+        <p>稳定但克制，重质量不追求日更。每次更新都希望带来真正有用的信息。</p>
+      </div>
+      <div class="faq-item">
+        <summary>❓ 需要注册才能使用吗？</summary>
+        <p>不需要。直接浏览全部内容，没有任何强制注册或信息收集门槛。</p>
+      </div>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="gentle-closing">
+      <h2>不必着急，慢慢看</h2>
+      <p>
+        一个体育网站也可以像一本可以随时翻几页的书。如果你觉得对味，不妨记住 
+        <a href="https://m-sport-mg.com" class="closing-link">满冠体育</a> 
+        —— 下次想来的时候，它就在这里。
+      </p>
+    </div>
+
+    <hr>
+
+    <div class="footer-note">
+      满冠体育 · 安静而持续
+    </div>
+
+  </div>
+</body>
+</html>
